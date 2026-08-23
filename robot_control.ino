@@ -6,26 +6,26 @@ void setup() {
 }
 
 void loop() {
-  // 1. Forward - 30 seconds
-  digitalWrite(2, HIGH); digitalWrite(3, LOW);
-  digitalWrite(4, HIGH); digitalWrite(5, LOW);
-  delay(30000);
-
-  // 2. Reverse - 60 seconds
+  // 1. Forward - 30 seconds (+RPM)
   digitalWrite(2, LOW);  digitalWrite(3, HIGH);
   digitalWrite(4, LOW);  digitalWrite(5, HIGH);
+  delay(30000);
+
+  // 2. Reverse - 60 seconds (-RPM)
+  digitalWrite(2, HIGH); digitalWrite(3, LOW);
+  digitalWrite(4, HIGH); digitalWrite(5, LOW);
   delay(60000);
 
-  // 3. Alternating Turns - 60 seconds total (5s right / 5s left)
+  // 3. Alternating Turns - 60 seconds total
   for (int i = 0; i < 6; i++) {
     // Turn Right (5 seconds)
-    digitalWrite(2, HIGH); digitalWrite(3, LOW);
-    digitalWrite(4, LOW);  digitalWrite(5, HIGH);
+    digitalWrite(2, LOW);  digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH); digitalWrite(5, LOW);
     delay(5000);
 
     // Turn Left (5 seconds)
-    digitalWrite(2, LOW);  digitalWrite(3, HIGH);
-    digitalWrite(4, HIGH); digitalWrite(5, LOW);
+    digitalWrite(2, HIGH); digitalWrite(3, LOW);
+    digitalWrite(4, LOW);  digitalWrite(5, HIGH);
     delay(5000);
   }
 }
